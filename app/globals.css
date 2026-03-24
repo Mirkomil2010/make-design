@@ -1,26 +1,138 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --vibe-bg: #e8edf8;
+  --vibe-bg-alt: #f8ead6;
+  --vibe-header: #1f2550;
+  --vibe-brand: #7fffd4;
+  --vibe-brand-strong: #66efc0;
+  --vibe-ink: #121737;
+  --vibe-ink-strong: #090d28;
+  --vibe-muted: #5e6682;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #e8edf8;
+  --color-foreground: #121737;
+  --font-sans: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  --font-display: "Sora", "Avenir Next", "Segoe UI", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--vibe-bg);
+  color: var(--vibe-ink);
+  font-family: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(127, 255, 212, 0.45);
+}
+
+.font-display {
+  font-family: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+}
+
+.page-atmosphere {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.72;
+  background:
+    radial-gradient(520px 340px at 12% 12%, rgba(63, 94, 251, 0.14), transparent 70%),
+    radial-gradient(580px 360px at 86% 14%, rgba(252, 186, 3, 0.14), transparent 68%),
+    radial-gradient(580px 420px at 30% 100%, rgba(45, 212, 191, 0.1), transparent 68%);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
+
+.skeleton-soft {
+  border: 1px solid rgba(18, 23, 55, 0.08);
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.7) 20%,
+    rgba(255, 255, 255, 0.92) 48%,
+    rgba(255, 255, 255, 0.7) 76%
+  );
+  background-size: 220% 100%;
+  animation: skeleton-wave 1.8s ease-in-out infinite;
+}
+
+.fade-in {
+  animation: fade-in 0.7s ease-out both;
+}
+
+.stagger-up {
+  animation: stagger-up 0.65s ease-out both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes stagger-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes skeleton-wave {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-atmosphere {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .page-atmosphere {
+    display: none;
+  }
 }
