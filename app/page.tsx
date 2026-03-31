@@ -23,7 +23,7 @@ export default function HomePage() {
                 Build production-grade design systems from any idea.
               </h1>
               <p className="mt-4 max-w-xl text-sm text-white/80 sm:text-base">
-                Mirror-ready workflows inspired by vibbb.es. Generate, publish,
+                Mirror-ready workflows inspired by vibe coding. Generate, publish,
                 and discover high-quality systems with dynamic trending signals.
               </p>
 
